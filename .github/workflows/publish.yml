@@ -1,0 +1,37 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          registry-url: 'https://registry.npmjs.org'
+
+      # 🔼 bump version + commit + tag
+      - name: Bump version
+        run: |
+          npm version patch -m "chore(release): %s"
+
+      # 🚀 push version bump + git tag
+      - name: Push changes
+        run: |
+          git push origin HEAD --follow-tags
+
+      # 📦 publish via Trusted Publishing (OIDC)
+      - name: Publish to npm
+        run: npm publish
