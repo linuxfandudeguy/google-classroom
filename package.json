@@ -1,0 +1,21 @@
+{
+  "name": "google-classroom-lessons",
+  "version": "1.0.0",
+  "description": "A educational collection with lots of educational games to empower your mind.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linuxfandudeguy/google-classroom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/linuxfandudeguy/google-classroom/issues"
+  },
+  "homepage": "https://github.com/linuxfandudeguy/google-classroom#readme"
+}
