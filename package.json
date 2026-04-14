@@ -1,6 +1,6 @@
 {
   "name": "google-classroom-lessons",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A educational collection with lots of educational games to empower your mind.",
   "main": "index.js",
   "scripts": {
