@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    #error {
+      font-family: sans-serif;
+      padding: 20px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div id="error" hidden></div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const frameSrc = params.get("frame");
+
+  if (!frameSrc) {
+    showError("No ?frame= parameter provided.");
+  } else {
+    try {
+      // Normalize URL (handles relative paths too)
+      const url = new URL(frameSrc, window.location.href);
+
+      const iframe = document.createElement("iframe");
+      iframe.src = url.href;
+
+      iframe.onload = () => {
+        console.log("Loaded:", url.href);
+      };
+
+      iframe.onerror = () => {
+        showError("Failed to load frame.");
+      };
+
+      document.body.appendChild(iframe);
+
+    } catch (e) {
+      showError("Invalid URL.");
+    }
+  }
+
+  function showError(msg) {
+    const el = document.getElementById("error");
+    el.textContent = msg;
+    el.hidden = false;
+  }
+</script>
+
+</body>
+</html>
